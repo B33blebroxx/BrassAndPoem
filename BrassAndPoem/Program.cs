@@ -51,7 +51,7 @@ List<ProductType> productTypes = new()
         Id = 2,
         Title = "Consoles"
     }
-    
+
 };
 
 //put your greeting here
@@ -64,7 +64,7 @@ string menuChoice = Console.ReadLine();
 switch (menuChoice)
 {
     case "1":
-        throw new NotImplementedException("Display all products");
+        DisplayAllProducts(products, productTypes);
         break;
 
     case "2":
@@ -88,18 +88,28 @@ switch (menuChoice)
 
 void DisplayMenu()
 {
-   Console.WriteLine(greeting);
-Console.WriteLine("\n\t\t1. Display All Products");
-Console.WriteLine("\n\t\t2. Delete A Product");
-Console.WriteLine("\n\t\t3. Add A Product");
-Console.WriteLine("\n\t\t4. Update A Product");
-Console.WriteLine("\n\t\t5. Exit");
-Console.Write("\n\n\t\tMake your selection: ");
+    Console.WriteLine(greeting);
+    Console.WriteLine("\n\t\t1. Display All Products");
+    Console.WriteLine("\n\t\t2. Delete A Product");
+    Console.WriteLine("\n\t\t3. Add A Product");
+    Console.WriteLine("\n\t\t4. Update A Product");
+    Console.WriteLine("\n\t\t5. Exit");
+    Console.Write("\n\n\t\tMake your selection: ");
+}
+
+string GetProductTypeName(int productTypeId, List<ProductType> productTypes)
+{
+    ProductType productType = productTypes.Find(pt => pt.Id == productTypeId);
+    return productType != null ? productType.Title : "Unknown";
 }
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    int index = 1;
+    foreach (Product product in products)
+    {
+        Console.WriteLine($"\n\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
+    }
 }
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
