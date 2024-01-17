@@ -55,16 +55,10 @@ List<ProductType> productTypes = new()
 };
 
 //put your greeting here
-string greeting = "\n\t\t ~~ Welcome to Brass & Poem! ~~";
+string greeting = "\n\t\t\t ~~ Welcome to Brass & Poem! ~~\n";
 
 //implement your loop here
-Console.WriteLine(greeting);
-Console.WriteLine("\n\t\t1. Display All Products");
-Console.WriteLine("\n\t\t2. Delete A Product");
-Console.WriteLine("\n\t\t3. Add A Product");
-Console.WriteLine("\n\t\t4. Update A Product");
-Console.WriteLine("\n\t\t5. Exit");
-Console.Write("\n\n\t\tMake your selection: ");
+DisplayMenu();
 string menuChoice = Console.ReadLine();
 
 switch (menuChoice)
@@ -91,9 +85,16 @@ switch (menuChoice)
         break;
 }
 
+
 void DisplayMenu()
 {
-    throw new NotImplementedException();
+   Console.WriteLine(greeting);
+Console.WriteLine("\n\t\t1. Display All Products");
+Console.WriteLine("\n\t\t2. Delete A Product");
+Console.WriteLine("\n\t\t3. Add A Product");
+Console.WriteLine("\n\t\t4. Update A Product");
+Console.WriteLine("\n\t\t5. Exit");
+Console.Write("\n\n\t\tMake your selection: ");
 }
 
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
@@ -115,6 +116,7 @@ void UpdateProduct(List<Product> products, List<ProductType> productTypes)
 {
     throw new NotImplementedException();
 }
+
 
 // don't move or change this!
 public partial class Program { }
