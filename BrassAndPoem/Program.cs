@@ -4,37 +4,37 @@ List<Product> products = new()
 {
     new Product
     {
-        Name = "God of War: Ragnarok",
-        Price = 49.99m,
+        Name = "Trumpet",
+        Price = 150.99m,
         ProductTypeId = 1
     },
 
     new Product
     {
-        Name = "Playstation 5",
-        Price = 450.00m,
+        Name = "Trombone",
+        Price = 246.99m,
+        ProductTypeId = 1
+    },
+
+    new Product
+    {
+        Name = "Tuba",
+        Price = 1250.99m,
+        ProductTypeId = 1
+    },
+
+    new Product
+    {
+        Name = "Ozymandias",
+        Price = 12350.99m,
         ProductTypeId = 2
     },
 
     new Product
     {
-        Name = "Baldur's Gate 3",
-        Price = 59.99m,
-        ProductTypeId = 1
-    },
-
-    new Product
-    {
-        Name = "Gaming PC",
-        Price = 1700.00m,
+        Name = "Leaves of Grass",
+        Price = 15650.99m,
         ProductTypeId = 2
-    },
-
-    new Product
-    {
-        Name = "Yakuza 0",
-        Price = 39.99m,
-        ProductTypeId = 1
     }
 };
 
@@ -44,12 +44,12 @@ List<ProductType> productTypes = new()
     new ProductType
     {
         Id = 1,
-        Title = "Games"
+        Title = "Brass"
     },
     new ProductType
     {
         Id = 2,
-        Title = "Consoles"
+        Title = "Poem"
     }
 
 };
@@ -122,7 +122,7 @@ void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
     Console.WriteLine("\n\n\n\n");
     foreach (Product product in products)
     {
-        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
+        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type: {GetProductTypeName(product.ProductTypeId, productTypes)}");
     }
     Console.Write("\n\n\t\t\t\tPress Enter to continue...");
     Console.ReadLine();
@@ -135,21 +135,49 @@ void DeleteProduct(List<Product> products, List<ProductType> productTypes)
     Console.WriteLine("\n\n\n\n");
     foreach (Product product in products)
     {
-        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
+        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type: {GetProductTypeName(product.ProductTypeId, productTypes)}");
     }
 
     Console.Write("\n\n\t\t\tSelect the number of the product you wish to delete:  ");
     int deleteChoice = Convert.ToInt32(Console.ReadLine());
 
     products.RemoveAt(deleteChoice - 1);
+    Console.Clear();
     Console.Write("\n\n\t\t\t\tProduct deleted! Press Enter to continue...");
     Console.ReadLine();
 }
 
 void AddProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
-}
+    int index = 1;
+    Console.Clear();
+    Console.Write("\n\n\t\t\tEnter the name of the product you're adding:  ");
+    string name = Console.ReadLine();
+
+    Console.Clear();
+    Console.Write("\n\n\t\t\tEnter the price of the product you're adding (ex - 150.00) :  ");
+    decimal price = Convert.ToDecimal(Console.ReadLine());
+    Console.Clear();
+
+    foreach (ProductType productType in productTypes)
+    {
+        Console.WriteLine($"\n\t\t\t{index++}. {productType.Title}");
+    }
+    Console.Write("\n\n\t\t\tSelect the product type # of the new product:  ");
+    int productTypeId = Convert.ToInt32(Console.ReadLine());
+
+    Product newProduct = new()
+    {
+        Name = name,
+        Price = price,
+        ProductTypeId = productTypeId
+    };
+
+    products.Add(newProduct);
+    Console.Clear();
+    Console.Write("\n\n\t\t\tNew product successfully added! Press Enter to continue...");
+    Console.ReadLine();
+};
 
 void UpdateProduct(List<Product> products, List<ProductType> productTypes)
 {
