@@ -55,47 +55,46 @@ List<ProductType> productTypes = new()
 };
 
 //put your greeting here
-string greeting = "\n\t\t\t ~~ Welcome to Brass & Poem! ~~\n";
+string greeting = "\n\n\n\n\t\t\t\t\t ~~ Welcome to Brass & Poem! ~~\n";
 
 //implement your loop here
-DisplayMenu();
-string menuChoice = Console.ReadLine();
 
-switch (menuChoice)
+string menuChoice = null;
+
+while (menuChoice != "0")
 {
-    case "1":
-        DisplayAllProducts(products, productTypes);
-        break;
+    DisplayMenu();
+    menuChoice = Console.ReadLine();
 
-    case "2":
-        throw new NotImplementedException("Delete a product");
-        break;
+    switch (menuChoice)
+    {
+        case "1":
+            DisplayAllProducts(products, productTypes);
+            break;
 
-    case "3":
-        throw new NotImplementedException("Add a product");
-        break;
+        case "2":
+            DeleteProduct(products, productTypes);
+            break;
 
-    case "4":
-        throw new NotImplementedException("Update a product");
-        break;
+        case "3":
+            AddProduct(products, productTypes);
+            break;
 
-    case "5":
-        Console.Write("Goodbye!");
-        Environment.Exit(0);
-        break;
+        case "4":
+            UpdateProduct(products, productTypes);
+            break;
+
+        case "5":
+            Environment.Exit(0);
+            break;
+
+        default:
+            Console.Write("\n\tYour selection is invalid, please try again. Press Enter to continue...");
+            Console.ReadLine();
+            break;
+    }
 }
 
-
-void DisplayMenu()
-{
-    Console.WriteLine(greeting);
-    Console.WriteLine("\n\t\t1. Display All Products");
-    Console.WriteLine("\n\t\t2. Delete A Product");
-    Console.WriteLine("\n\t\t3. Add A Product");
-    Console.WriteLine("\n\t\t4. Update A Product");
-    Console.WriteLine("\n\t\t5. Exit");
-    Console.Write("\n\n\t\tMake your selection: ");
-}
 
 string GetProductTypeName(int productTypeId, List<ProductType> productTypes)
 {
@@ -103,18 +102,48 @@ string GetProductTypeName(int productTypeId, List<ProductType> productTypes)
     return productType != null ? productType.Title : "Unknown";
 }
 
+void DisplayMenu()
+{
+    Console.Clear();
+    Console.WriteLine(greeting);
+    Console.WriteLine("\n\t\t\t1. Display All Products");
+    Console.WriteLine("\n\t\t\t2. Delete A Product");
+    Console.WriteLine("\n\t\t\t3. Add A Product");
+    Console.WriteLine("\n\t\t\t4. Update A Product");
+    Console.WriteLine("\n\t\t\t5. Exit");
+    Console.Write("\n\n\t\t\tMake your selection: ");
+}
+
+
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 {
+    Console.Clear();
     int index = 1;
+    Console.WriteLine("\n\n\n\n");
     foreach (Product product in products)
     {
-        Console.WriteLine($"\n\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
+        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
     }
+    Console.Write("\n\n\t\t\t\tPress Enter to continue...");
+    Console.ReadLine();
 }
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.Clear();
+    int index = 1;
+    Console.WriteLine("\n\n\n\n");
+    foreach (Product product in products)
+    {
+        Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type:{GetProductTypeName(product.ProductTypeId, productTypes)}");
+    }
+
+    Console.Write("\n\n\t\t\tSelect the number of the product you wish to delete:  ");
+    int deleteChoice = Convert.ToInt32(Console.ReadLine());
+
+    products.RemoveAt(deleteChoice - 1);
+    Console.Write("\n\n\t\t\t\tProduct deleted! Press Enter to continue...");
+    Console.ReadLine();
 }
 
 void AddProduct(List<Product> products, List<ProductType> productTypes)
