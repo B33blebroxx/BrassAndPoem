@@ -55,8 +55,41 @@ List<ProductType> productTypes = new()
 };
 
 //put your greeting here
+string greeting = "\n\t\t ~~ Welcome to Brass & Poem! ~~";
 
 //implement your loop here
+Console.WriteLine(greeting);
+Console.WriteLine("\n\t\t1. Display All Products");
+Console.WriteLine("\n\t\t2. Delete A Product");
+Console.WriteLine("\n\t\t3. Add A Product");
+Console.WriteLine("\n\t\t4. Update A Product");
+Console.WriteLine("\n\t\t5. Exit");
+Console.Write("\n\n\t\tMake your selection: ");
+string menuChoice = Console.ReadLine();
+
+switch (menuChoice)
+{
+    case "1":
+        throw new NotImplementedException("Display all products");
+        break;
+
+    case "2":
+        throw new NotImplementedException("Delete a product");
+        break;
+
+    case "3":
+        throw new NotImplementedException("Add a product");
+        break;
+
+    case "4":
+        throw new NotImplementedException("Update a product");
+        break;
+
+    case "5":
+        Console.Write("Goodbye!");
+        Environment.Exit(0);
+        break;
+}
 
 void DisplayMenu()
 {
