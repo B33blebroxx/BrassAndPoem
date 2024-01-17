@@ -134,7 +134,7 @@ void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 {
     Console.Clear();
     int index = 1;
-    Console.WriteLine("\n\n\n\n");
+    Console.WriteLine("\n\n\n\n ");
     foreach (Product product in products)
     {
         Console.WriteLine($"\n\t\t\t{index++}. {product.Name}   Price: ${product.Price}   Product Type: {GetProductTypeName(product.ProductTypeId, productTypes)}");
